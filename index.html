@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Princess</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #fff0f5;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.avocado {
+    position: fixed;
+    color: #719b54;
+    opacity: 0.12;
+    font-size: 30px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    background: rgba(255,255,255,0.72);
+    padding: 25px;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 430px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(220,120,150,0.12);
+}
+
+#photo {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 15px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #b85d80;
+    font-size: 22px;
+    line-height: 1.8;
+}
+
+button {
+    border: none;
+    background: #f5b6ce;
+    color: #743c54;
+    padding: 13px 23px;
+    border-radius: 12px;
+    font-size: 17px;
+    cursor: pointer;
+    margin: 8px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #ee9fbe;
+}
+
+.buttons {
+    position: relative;
+    min-height: 65px;
+}
+
+#runaway {
+    position: relative;
+}
+
+#message {
+    color: #a94d75;
+    font-size: 19px;
+    line-height: 2;
+    direction: ltr;
+    display: none;
+    white-space: pre-line;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+for(let i=0;i<22;i++){
+    let a=document.createElement("div");
+    a.className="avocado";
+    a.textContent="🥑";
+    a.style.left=Math.random()*95+"%";
+    a.style.top=Math.random()*95+"%";
+    a.style.transform="rotate("+Math.random()*50+"deg)";
+    document.body.appendChild(a);
+}
+</script>
+
+<div class="container">
+
+<img id="photo" src="princess.jpg" alt="Your picture">
+
+<div id="question">
+
+<h2>هل هذه الجميلة انتي🥰؟</h2>
+
+<div class="buttons">
+<button onclick="next(1)">نعم</button>
+</div>
+
+</div>
+
+<div id="message"></div>
+
+</div>
+
+<script>
+
+let step=0;
+
+function showQuestion(title, buttons){
+    const q=document.getElementById("question");
+
+    q.innerHTML=`
+        <h2>${title}</h2>
+        <div class="buttons">${buttons}</div>
+    `;
+}
+
+function next(s){
+
+    step=s;
+
+    if(s===1){
+
+        showQuestion(
+        "علابالك بلي نتي كتكوتة خلااااص😭👈🏻👉🏻؟",
+
+        `<button onclick="next(2)">علابالي</button>
+        <button id="runaway" onmouseover="escapeButton()" onclick="escapeButton()">والله معلابالي😭</button>`
+        );
+
+    }
+
+    if(s===2){
+
+        showQuestion(
+        "صحا هاذي معلابالكش 😔 و علابالك بلي كي تضرب فيك شمس تولي نتي اجمل منها؟😔👈🏻👉🏻",
+
+        `<button onclick="next(3)">علابالي😭</button>
+        <button id="runaway" onmouseover="escapeButton()" onclick="escapeButton()">والله معلابالي😭</button>`
+        );
+
+    }
+
+    if(s===3){
+
+        showQuestion(
+        "هاذييي تاني معلابالكش😔! صحا علابالك بلي راهي 18/11؟؟",
+
+        `<button onclick="next(4)">بلاما تشوفي راهي 18 صح</button>`
+        );
+
+    }
+
+    if(s===4){
+
+        showQuestion(
+        "ايا ليوم يا حبيبي راهو عيد الاميرات سوووو منقدرش نخلي الاميرة تاعي هكاك👈🏻👉🏻",
+
+        `<button onclick="next(5)">اعطني رسالة</button>`
+        );
+
+    }
+
+    if(s===5){
+
+        document.getElementById("question").style.display="none";
+
+        document.getElementById("photo").style.display="none";
+
+        document.getElementById("message").style.display="block";
+
+        document.getElementById("message").textContent=
+`Today is 18th November
+
+Happy Princess Day, Cutie!
+
+You deserve to feel special, not just today, but every single day💗`;
+
+    }
+
+}
+
+function escapeButton(){
+
+    const b=document.getElementById("runaway");
+
+    if(!b) return;
+
+    b.style.position="fixed";
+
+    b.style.left=Math.random()*(window.innerWidth-160)+"px";
+
+    b.style.top=Math.random()*(window.innerHeight-70)+"px";
+
+}
+
+</script>
+
+</body>
+</html>
